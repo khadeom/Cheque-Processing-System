@@ -41,41 +41,46 @@
   
   <div class="col-12 card my-4 image-container  mx-3 ">
       <span>
-        <label for="account" class="form-label">Account :</label>
+        <label for="account" class="form-label">Payee Name :</label>
 
         <article>
-            <img src="/static/assets/img/bg-pricing.jpg" alt="img1">
+          <img src="/vision{{ cheque_details.payee_img.url}}" alt="{{ cheque_details.bank_name}}" style="width:100; height:100%;"/>
+
         </article>
-        <label for="account">Account :</label>
+        <label for="account">IFSC :</label>
         <article>
             
-            <img src="/static/assets/img/bg-pricing.jpg"alt="img2">
+          <img src="/vision{{ cheque_details.ifsc_img.url}}" alt="{{ cheque_details.bank_name}}" />
+
         </article>
 
     </span>
 
     <span>
-      <label for="account">Account :</label>
+      <label for="account">Amount :</label>
         <article>
             
 
-            <img src="/static/assets/img/bg-pricing.jpg" alt="img1">
+          <img src="/vision{{ cheque_details.amount_img.url}}" alt="{{ cheque_details.bank_name}}" />
+
         </article>
 
-        <label for="account">Account :</label>
+        <label for="account">micr :</label>
         <article>
             
 
-            <img src="/static/assets/img/bg-pricing.jpg" alt="img1">
+          <img src="/vision{{ cheque_details.micr_img.url}}" alt="{{ cheque_details.bank_name}}" />
+
         </article>
     </span>
 
     <span>
-      <label for="account">Account :</label>
+      <label for="account">Signature :</label>
       <article>
          
 
-          <img src="/static/assets/img/bg-pricing.jpg" alt="img1">
+        <img src="/vision{{ cheque_details.signature.url}}" alt="{{ cheque_details.bank_name}}"  />  
+
       </article>
       
   </span>
@@ -85,11 +90,6 @@
 
   {% comment %}
   
-    <img src="/vision{{ cheque_details.payee_img.url}}" alt="{{ cheque_details.bank_name}}" style="width:100; height:100%;"/>
-    <img src="/vision{{ cheque_details.ifsc_img.url}}" alt="{{ cheque_details.bank_name}}" />
-    <img src="/vision{{ cheque_details.amount_img.url}}" alt="{{ cheque_details.bank_name}}" />
-    <img src="/vision{{ cheque_details.micr_img.url}}" alt="{{ cheque_details.bank_name}}" />
-    <img src="/vision{{ cheque_details.signature.url}}" alt="{{ cheque_details.bank_name}}"  />  
     {% endcomment %}
 
   <form action="{%url 'done' %}" id="form" method="post"  enctype="multipart/form-data">
