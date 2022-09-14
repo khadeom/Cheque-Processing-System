@@ -1,0 +1,10 @@
+setup.py
+core.settings.egg-info/PKG-INFO
+core.settings.egg-info/SOURCES.txt
+core.settings.egg-info/dependency_links.txt
+core.settings.egg-info/top_level.txt
+migrations/0001_initial.py
+migrations/0002_user_test.py
+migrations/0003_alter_chequedetail_accno_img_and_more.py
+migrations/0004_alter_chequedetail_accno_img_and_more.py
+migrations/__init__.py

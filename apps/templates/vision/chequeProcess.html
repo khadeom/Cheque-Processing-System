@@ -1,0 +1,135 @@
+{% comment %} {% extends 'vision/base.html' %} {% endcomment %}
+{% load static %}
+{% block content %}
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: 25vw 25vw 25vw;
+        width: 90vw;
+        padding: 1em;
+        margin: auto;-
+    }
+
+    .grid-col {
+
+
+        margin: 1vw;
+        padding: 1em;
+
+    }
+
+    .grid-col video {
+        max-width: 25vw;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    .grid-col img {
+        width: 40px;
+    }
+</style>
+<br>
+<center>
+    <div class="lds-dual-ring">
+        <h3 style="text-align: center;">
+            We are processing your script. <br>
+            We will notify once your narration is generated.
+        </h3>
+    </div>
+    <br>
+    <div class="cbody">
+        <h2 style="width: 60vw;margin-left: 1em;">Cheque OCR</h2>
+        <h1>Wo ho {{cheque_details}}</h1>
+
+
+        <div class="d-flex flex-column-fluid">
+            <!--begin::Container-->
+
+            <div class="grid-container">
+                {%if cheque_details %}
+
+                <div class="grid-col">
+                    
+                    <img src="{{ cheque_details}}" alt="{{ cheque_details}}" style="width:100px;">
+                    {% comment %} <img src="{{ chequedetails.amount_img.url}}" alt="{{ chequedetails.bank}}" style="width:100px;"> {% endcomment %}
+
+
+                    {% comment %} <video id="vid" controls loop>
+                        <source src="../../../{{i}}" type="video/mp4">
+                    </video> {% endcomment %}
+                    <div style="display:flex; align-items:center;">
+                        <!-- <img src="{% static 'assets/media/logos/logo.jpg'%}" style="margin-right: 10px;"></img> -->
+                        <h3> Bank Name:- </h3>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div> 
+
+</center>
+<script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+{% comment %} <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script> {% endcomment %}
+{% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> {% endcomment %}
+<script>
+    $(document).ready(function () {
+        //$('.lds-dual-ring').hide();
+
+        //$('#narrateBtn').click(function () {
+            console.log("inside jquery"); 
+            $.ajax({
+                type: 'GET',
+                data: {
+                    cheque_id: '{{cheque.cheque_id}}',
+                    cheque_image: '{{cheque.cheque_image.url}}',
+                    bank_name: '{{cheque.bank_name}}',
+                    language:'{{cheque.language}}',
+                },
+                url: "{% url 'chequeProcessing' %}",
+                contentType: "application/json",
+
+                statusCode: {
+                    500: function () {
+                        alert("Some error occurred");
+
+                    }
+                },
+                beforeSend: function () {
+                    $('.lds-dual-ring').show();
+                    $('.cbody').hide();
+                },
+                complete: function () {
+                    $('.lds-dual-ring').hide();
+                    $('.cbody').show();
+                },
+                success: function (data) {
+                    printdata(data)
+                },
+                // })
+                // error: function (xhr, status, error) {
+                //     var err = eval("(" + xhr.responseText + ")");
+                //     alert(err.Message);
+          //  })
+
+        })
+    })
+    function printdata(data) {
+        alert("Narration Generated Successfully!")
+
+        document.location.href = '../done';
+        // $.each(data.mob, function (index, value) {
+        //     $(".mainc").after("<tr><td>" + value + "</td><td>" + data.status[index] + "</td></tr>");
+        // });
+    }
+</script>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxtransport-xdomainrequest/1.0.4/jquery.xdomainrequest.min.js" integrity="sha512-AqrEfeiUZBu9nWx7jHZlve8pPY3Mavhhwobv+pVxTSc10vpElmhFNDqe8DopVSvApKGfUrOQO3OshR8avd+pTw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+{% endblock %}

@@ -1,0 +1,225 @@
+
+{% extends 'vision/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<body>
+  <title>DND</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #d8d9e2;
+  }
+  .drag-area{
+    border: 2px dashed #fff;
+    height: 500px;
+    width: 900px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #bfc2eb;
+  }
+  .drag-area.active{
+    border: 2px solid #5256ad;
+  }
+  .drag-area .icon{
+    font-size: 100px;
+    color: rgb(34, 34, 34);
+  }
+  .drag-area header{
+    font-size: 30px;
+    font-weight: 500;
+    color: #000;
+  }
+  .drag-area span{
+    font-size: 25px;
+    font-weight: 500;
+    color: #000;
+    margin: 10px 0 15px 0;
+  }
+  .drag-area button{
+    padding: 10px 25px;
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    background: #fff;
+    color: #5256ad;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .drag-area img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .content-section {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+  }
+  
+  .content-section{
+    margin-top: 20px;
+  }
+  .input-container{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    background-color: #5256ad;
+    width: 700px;
+    height: 50px;
+  }
+  
+  .input-field{
+    height: 40px;
+    margin-left: 0.2rem;
+    border-radius: 6px;
+    border: none
+    padding-left:1rem;
+  }
+  
+  .input-field::placeholder{
+    padding-left: 1rem;
+  }
+  </style>
+
+    <form action="{%url 'cheque_upload3' %}" id='form' method='POST' enctype="multipart/form-data">
+      {%csrf_token%}
+        <div class="drag-area" id="drag-area" >
+          {% if cheque_image %}
+              <img src="{{ cheque_image.url}}" alt="bank" style="width:100px;">
+
+            {% else %}
+              <span class="text-muted">No Image</span>
+            {% endif %}
+        </div>
+            
+        
+          <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+          <header>Drag & Drop to Upload File</header>
+          <span>OR</span>
+          <div>
+            <span  for="cheque-input" style=" padding-top: 5px;">
+            <input type="file" name="cheque_image" id="cheque-input2" required accept=".jpg,.png,.tif">
+            </span>
+          </div>
+        <script>
+          document.getElementById("cheque-input2").onchange = function() {
+          document.getElementById("form").submit();
+          };
+        </script>
+
+
+          {% comment %} <div for="cheque-input" class="browse-btn">Browse File</div> {% endcomment %}
+        
+      
+
+      <div class="section">
+          <div class="content-section flex-row">
+            <form>
+              <div class="form-row">
+                <div class="flex flex-row input-container">
+                <span>
+                  <label for="exampleInputEmail1">Language:</label>
+                  <input type="text" name="language" class="input-field" placeholder="Language">
+                </span>
+                <span >
+                  <label for="exampleInputEmail1">Bank:</label>
+                  <input type="text" name="bank_name" class="input-field" placeholder="Bank">
+                </span>
+              </div>
+              </div>
+              <button class="submit">Extract</button>
+          </div> 
+      </div>
+    </form>
+
+        <script >
+          const dropArea = document.querySelector(".drag-area"),
+          dragText = dropArea.querySelector("header"),
+          button = dropArea.querySelector(".image-sel"),
+          input = dropArea.querySelector("input");
+let file; //this is a global variable and we'll use it inside multiple functions
+
+button.onclick = ()=>{
+  //input.click(); //if user click on the button then the input also clicked 
+  dropArea.innerHTML = `<img src="${fileURL}" alt="image">`;
+}
+
+input.addEventListener("change", function(){
+  //getting user select file and [0] this means if user select multiple files then we'll select only the first one
+  file = this.files[0];
+  dropArea.classList.add("active");
+  showFile(); //calling function
+});
+
+
+//If user Drag File Over DropArea
+dropArea.addEventListener("dragover", (event)=>{
+  event.preventDefault(); //preventing from default behaviour
+  dropArea.classList.add("active");
+  dragText.textContent = "Release to Upload File";
+});
+
+//If user leave dragged File from DropArea
+dropArea.addEventListener("dragleave", ()=>{
+  dropArea.classList.remove("active");
+  dragText.textContent = "Drag & Drop to Upload File";
+});
+
+//If user drop File on DropArea
+dropArea.addEventListener("drop", (event)=>{
+  event.preventDefault(); //preventing from default behaviour
+  //getting user select file and [0] this means if user select multiple files then we'll select only the first one
+  file = event.dataTransfer.files[0];
+  showFile(); //calling function
+});
+
+function showFile(){
+  let fileType = file.type; //getting selected file type
+  let validExtensions = ["image/jpeg", "image/jpg", "image/png"]; 
+  
+  //adding some valid image extensions in array
+  if(validExtensions.includes(fileType)){ //if user selected file is an image file
+    let fileReader = new FileReader(); //creating new FileReader object
+    fileReader.onload = ()=>{
+      let fileURL = fileReader.result; //passing user file source in fileURL variable
+        // UNCOMMENT THIS BELOW LINE. I GOT AN ERROR WHILE UPLOADING THIS POST SO I COMMENTED IT
+      //let imgTag = `<img src="${fileURL}" alt="image">`; //creating an img tag and passing user selected file source inside src attribute
+      //dropArea.innerHTML = imgTag; //adding that created img tag inside dropArea container 
+      document.getElementById('drag-area').innerHTML = `<img src="${fileURL}" alt="image">`;
+
+
+
+
+
+    }
+    fileReader.readAsDataURL(file);
+  }else{
+    alert("This is not an Image File!");
+    dropArea.classList.remove("active");
+    dragText.textContent = "Drag & Drop to Upload File";
+  }
+}
+        </script>
+</body>
+</html>
+{% endblock %}

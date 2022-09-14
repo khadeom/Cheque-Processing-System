@@ -1,0 +1,49 @@
+
+{% extends 'vision/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<body>
+
+    <form action="{%url 'cheque_upload3' %}" method='POST' enctype="multipart/form-data">
+        {%csrf_token%}
+        <div class="container">
+            <h3>Upload your file</h3>
+            <div class="drag-area">
+                <div class="icon">
+                    <i class="fas fa-images"></i>
+                </div>
+                <span class="header">Drag & Drop</span>
+                <span class="header">or <span class="button" >browse</span></span>
+                <span class="support">Supports: JPEG,JPG,PNG</span>
+                <!-- <input type="file" name="" id=""/> -->
+            </div>
+        </div>
+
+        <div class="section">
+            <div>
+                <span  for="cheque-input" style=" padding-top: 5px;">Select Image
+                <input type="file" name="cheque_image" id="cheque-input" required accept=".jpg,.png,.tif"></span>
+            </div>
+            <span class="language-opt" name="language" id="language-opt">
+                <label for="language">Language:</label>
+                
+                    <input type="text" name="language" class="input-field" placeholder="Language">
+                    
+                
+            </span>
+            <span class="bank-opt" name="bank_name">
+                <label for="language">Bank:</label>
+
+                
+                    <input type="text" name="bank_name" class="input-field" placeholder="Bank">                    
+                
+            </span>
+
+            <button class="submit">Extract</button>
+        </div>
+    </form>
+
+        <script src="./main.js"></script>
+</body>
+</html>
+{% endblock %}

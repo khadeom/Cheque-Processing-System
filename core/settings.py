@@ -14,6 +14,16 @@ env = environ.Env(
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+def get_BASE_DIR():
+    return BASE_DIR
+
+def get_CORE_DIR():
+    return CORE_DIR
+
+
+
+
+
 # Take environment variables from .env file
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
@@ -39,8 +49,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.home'  # Enable the inner home (home)
+    'apps.home',  # Enable the inner home (home)
+    'apps.vision',
+    "crispy_forms",
+    "crispy_bootstrap5",
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -80,24 +97,38 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-if os.environ.get('DB_ENGINE') and os.environ.get('DB_ENGINE') == "mysql":
-    DATABASES = { 
-      'default': {
-        'ENGINE'  : 'django.db.backends.mysql', 
-        'NAME'    : os.getenv('DB_NAME'     , 'appseed_db'),
-        'USER'    : os.getenv('DB_USERNAME' , 'appseed_db_usr'),
-        'PASSWORD': os.getenv('DB_PASS'     , 'pass'),
-        'HOST'    : os.getenv('DB_HOST'     , 'localhost'),
-        'PORT'    : os.getenv('DB_PORT'     , 3306),
-        }, 
-    }
-else:
-    DATABASES = {
+# vBcanLl1j92A4SSq
+DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': 'db.sqlite3',
+            'ENGINE': 'djongo',
+            'NAME': 'bankocr',
+            'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host':"mongodb+srv://khadeom10:vBcanLl1j92A4SSq@bankocr.jy4suly.mongodb.net/?retryWrites=true&w=majority"
+            }  
         }
-    }
+}
+
+
+
+# if os.environ.get('DB_ENGINE') and os.environ.get('DB_ENGINE') == "mysql":
+#     DATABASES = { 
+#       'default': {
+#         'ENGINE'  : 'django.db.backends.mysql', 
+#         'NAME'    : os.getenv('DB_NAME'     , 'appseed_db'),
+#         'USER'    : os.getenv('DB_USERNAME' , 'appseed_db_usr'),
+#         'PASSWORD': os.getenv('DB_PASS'     , 'pass'),
+#         'HOST'    : os.getenv('DB_HOST'     , 'localhost'),
+#         'PORT'    : os.getenv('DB_PORT'     , 3306),
+#         }, 
+#     }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': 'db.sqlite3',
+#         }
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -143,6 +174,9 @@ STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'apps/static'),
 )
 
+MEDIA_ROOT = os.path.join(CORE_DIR, 'media')
+
+MEDIA_URL = '/media/'
 
 #############################################################
 #############################################################

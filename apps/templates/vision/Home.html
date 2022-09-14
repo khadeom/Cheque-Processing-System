@@ -1,0 +1,19 @@
+{% extends 'vision/base.html' %}
+
+{% block content %}
+
+  {% block content_header %}
+    <h2>Cheques</h2>
+    <p>
+      <a href="{% url 'cheque_upload3' %}" class="btn btn-primary">Upload cheque</a>
+    </p>
+    
+    <p>
+        <a href="{% url 'viewAll' %}" class="btn btn-primary"></a>
+    </p>
+  {% endblock %}
+
+  <table class="table mb-0">
+ 
+  </table>
+{% endblock %}

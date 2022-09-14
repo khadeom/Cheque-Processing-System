@@ -1,0 +1,56 @@
+{% extends 'vision/base.html' %}
+
+{% block content %}
+
+  {% block content_header %}
+    <h2>Cheques</h2>
+    <p>
+      <a href="{% url 'cheque_upload3' %}" class="btn btn-primary">Upload cheque</a>
+    </p>
+  {% endblock %}
+
+  <table class="table mb-0">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Bank</th>
+        <th>path</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td>{{chequedetails.bank}}</td>
+          <td>{{ chequedetails.language }}</td>
+          <td>{{ chequedetails.cheque_image.url }}</td>
+          <td>
+            {% if chequedetails.cheque_image %}
+              <img src="{{ chequedetails.cheque_image.url}}" alt="{{ chequedetails.bank}}" style="width:100px;">
+              <img src="{{ chequedetails.amount_img.url}}" alt="{{ chequedetails.bank}}" style="width:100px;">
+
+            {% else %}
+              <span class="text-muted">No Image</span>
+            {% endif %}
+          </td>
+
+
+
+
+          
+          {% comment %} <td>
+            <a href="{{ cheque.cheque_image.url }}" class="btn btn-primary btn-sm" target="_blank">
+              Download PDF
+            </a> {% endcomment %}
+          </td>
+          {% comment %} <td>
+            <form method="post" action="{% url 'delete_cheque' cheque.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </td> {% endcomment %}
+        </tr>
+      
+    </tbody>
+  </table>
+{% endblock %}

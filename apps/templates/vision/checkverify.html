@@ -1,0 +1,65 @@
+{% extends 'vision/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h2>Done</h2>
+{% comment %} <div class="grid-container" >
+
+  <div class="image-container shadow" style=" display: flex; flex-direction: column; width:900px; height:400px; background-color: pink; margin-bottom: 10px ;justify-contain:center; align-items: center;">
+    <span style="display:flex">
+      <td>
+        <label for="payee name">payee name :</label>
+        <figure class="image-holder" style="background-color: red; width:300px; height:100px">
+          <img src="{{ cheque_details.payee_img.url}}" alt="{{ cheque_details.bank_name}}" style="width:100%; height:100%; object-fit: contain"/>
+        </figure>
+      </td>
+      <td>
+        <label for="payee name">payee name :</label>
+        <figure class="image-holder" style="background-color: red; width:300px; height:100px">
+          <img src="{{ cheque_details.ifsc_img.url}}" alt="{{ cheque_details.bank_name}}" style="width:100%; height:100%; object-fit: contain"/>
+        </figure>
+      </td>
+    </span>
+    
+    <span style="display: flex;" >
+      <td>
+        <label for="payee name">payee name :</label>
+        <figure class="image-holder" style="background-color: red; width:300px; height:100px">
+          <img src="{{ cheque_details.ifsc_img.url}}" alt="{{ cheque_details.bank_name}}" style="width:100%; height:100%; object-fit: contain"/>
+        </figure>
+      </td>
+      <td>
+        <label for="payee name">payee name :</label>
+        <figure class="image-holder" style="background-color: red; width:300px; height:100px">
+          <img src="{{ cheque_details.ifsc_img.url}}" alt="{{ cheque_details.bank_name}}" style="width:100%; height:100%; object-fit: contain"/>
+        </figure>
+      </td>
+    <span>
+  </div> {% endcomment %}
+  <div>
+    <img src="/vision{{ cheque_details.payee_img.url}}" alt="{{ cheque_details.bank_name}}" style="width:100; height:100%;"/>
+    <img src="/vision{{ cheque_details.ifsc_img.url}}" alt="{{ cheque_details.bank_name}}" />
+    <img src="/vision{{ cheque_details.amount_img.url}}" alt="{{ cheque_details.bank_name}}" />
+    <img src="/vision{{ cheque_details.micr_img.url}}" alt="{{ cheque_details.bank_name}}" />
+    <img src="/vision{{ cheque_details.signature.url}}" alt="{{ cheque_details.bank_name}}"  />  
+  </div>
+
+  <form action="{%url 'done' %}" id="form" method="post"  enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div>
+    {% crispy form%}
+    {% comment %} {{form|crispy}} {% endcomment %}
+
+    </div>
+
+    <button type="submit">Done</button>
+  </form>
+
+{% endblock %}
+
+
+          
+          
+      
+    

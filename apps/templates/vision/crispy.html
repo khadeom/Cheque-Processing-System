@@ -1,0 +1,25 @@
+{% extends 'vision/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+<div class="myForm">
+    <form method='POST' action=''>{% csrf_token %}
+        <div class="row">
+            <div class='col-sm-6'>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    {{ form.invoice_date|as_crispy_field }}
+                    {{ form.name|as_crispy_field }}
+                  </div>
+                  <div class="form-group col-md-6">
+                    {{ form.invoice_number|as_crispy_field }}
+                    {{ form.phone_number|as_crispy_field }}
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+
+                <!-- <input type="submit" value='Submit'/>   -->
+            </div>
+        </div>
+    </form>
+</div><!-- End myform -->

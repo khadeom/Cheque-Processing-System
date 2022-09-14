@@ -1,0 +1,76 @@
+{% extends 'vision/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .text-muted{
+        width: 450px;
+        color:pink;
+
+    }
+</style>
+<body>
+    {% if cheque %}
+        <div class="container">
+            
+            <img src="{{ cheque.cheque_image.url}}" alt="{{ cheque.title}}" style="width: 100%; height: 100%;">
+            
+        </div>
+        <div class="section">
+            <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: row; justify-content: space-between;" >
+            {% csrf_token %}
+            {{form|crispy}}
+            <button type="submit" style="width:120px; height: 40px; margin-top:30px; padding:0.25rem; align-items: center; border: none; border-radius: 15px;" >Upload file</button>
+            </form> 
+            <button class="extract" style="width:120px; height: 40px; margin-top:30px; padding:0.25rem; align-items: center; border: none; border-radius: 15px; " >Extract</button>
+        </div>
+        
+    {% else %}
+        <div class="container">
+            <div class="empty-container"  style=" display:flex; align-items:center; justify-content:center; text-align: center; width:100%; height:300px; ">
+            <span class="text-muted" >No Image</span>
+            </div>
+        </div> 
+        <div class="section" style="padding: 10px; margin-top:20px ">
+            <form method="post" enctype="multipart/form-data" style= "display: flex; flex-direction: row; width:100%; justify-content: space-between;" >
+                {% csrf_token %}
+                {{form|crispy}}
+                <button type="submit" style="width:120px; height: 40px; margin-top:30px; padding:0.25rem; align-items: center; border: none; border-radius: 15px; ">Upload file</button>
+              </form>
+              <button class="extract"   style="width:120px; height: 40px; margin-top:30px; padding:0.25rem; align-items: center; border: none; border-radius: 15px; " >Extract</button>
+        </div> 
+        
+    {% endif %}
+      
+
+    {% comment %} <div class="section">
+        <span>
+        <label>Select Image:</label>
+        <input type="file" name="" id=""/>
+        </span>
+        <span class="language-opt">
+            <label for="language">Language:</label>
+            <select id="cars">
+                <option value="volvo">English</option>
+                <option value="saab">Marathi</option>
+                <option value="opel">Hindi</option>
+                
+            </select>
+        </span>
+        <span class="bank-opt">
+            <label for="language">Bank:</label>
+
+            <select id="cars">
+                <option value="volvo">SBI</option>
+                <option value="saab">BOI</option>
+                <option value="opel">Axis</option>
+                
+            </select>
+        </span>
+
+        <button class="extract">Extract</button>
+    </div> {% endcomment %}
+
+        <script src="./main.js"></script>
+</body>
+</html>
+{% endblock %}
