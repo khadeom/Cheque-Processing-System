@@ -1,51 +1,96 @@
 {% extends "layouts/base.html" %}
-
-{% comment %} {% extends 'vision/base.html' %} {% endcomment %}
-
 {% load crispy_forms_tags %}
 
 {% block content %}
-  <h2>Done</h2>
-{% comment %} <div class="grid-container" >
+ <style>
+  
 
-  <div class="image-container shadow" style=" display: flex; flex-direction: column; width:900px; height:400px; background-color: pink; margin-bottom: 10px ;justify-contain:center; align-items: center;">
-    <span style="display:flex">
-      <td>
-        <label for="payee name">payee name :</label>
-        <figure class="image-holder" style="background-color: red; width:300px; height:100px">
-          <img src="{{ cheque_details.payee_img.url}}" alt="{{ cheque_details.bank_name}}" style="width:100%; height:100%; object-fit: contain"/>
-        </figure>
-      </td>
-      <td>
-        <label for="payee name">payee name :</label>
-        <figure class="image-holder" style="background-color: red; width:300px; height:100px">
-          <img src="{{ cheque_details.ifsc_img.url}}" alt="{{ cheque_details.bank_name}}" style="width:100%; height:100%; object-fit: contain"/>
-        </figure>
-      </td>
+
+.image-container{
+  width: 96%;
+  height: auto;
+  /* top: 50px; */
+  /* background-color: aqua; */
+  display: flex;
+  flex-direction: column;
+}
+
+.image-container span {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  /* background-color: brown; */
+  align-items: center;
+  /* justify-content: space-evenly; */
+}
+
+.image-container span article{
+  width: 350px;
+  height: 200px;
+}
+.image-container span article label{
+  margin-bottom: 0.2rem;
+}
+.image-container span article img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+</style>
+  
+  <div class="col-12 card my-4 image-container  mx-3 ">
+      <span>
+        <label for="account" class="form-label">Account :</label>
+
+        <article>
+            <img src="/static/assets/img/bg-pricing.jpg" alt="img1">
+        </article>
+        <label for="account">Account :</label>
+        <article>
+            
+            <img src="/static/assets/img/bg-pricing.jpg"alt="img2">
+        </article>
+
     </span>
-    
-    <span style="display: flex;" >
-      <td>
-        <label for="payee name">payee name :</label>
-        <figure class="image-holder" style="background-color: red; width:300px; height:100px">
-          <img src="{{ cheque_details.ifsc_img.url}}" alt="{{ cheque_details.bank_name}}" style="width:100%; height:100%; object-fit: contain"/>
-        </figure>
-      </td>
-      <td>
-        <label for="payee name">payee name :</label>
-        <figure class="image-holder" style="background-color: red; width:300px; height:100px">
-          <img src="{{ cheque_details.ifsc_img.url}}" alt="{{ cheque_details.bank_name}}" style="width:100%; height:100%; object-fit: contain"/>
-        </figure>
-      </td>
+
     <span>
-  </div> {% endcomment %}
-  <div>
+      <label for="account">Account :</label>
+        <article>
+            
+
+            <img src="/static/assets/img/bg-pricing.jpg" alt="img1">
+        </article>
+
+        <label for="account">Account :</label>
+        <article>
+            
+
+            <img src="/static/assets/img/bg-pricing.jpg" alt="img1">
+        </article>
+    </span>
+
+    <span>
+      <label for="account">Account :</label>
+      <article>
+         
+
+          <img src="/static/assets/img/bg-pricing.jpg" alt="img1">
+      </article>
+      
+  </span>
+    </div>
+  
+
+
+  {% comment %}
+  
     <img src="/vision{{ cheque_details.payee_img.url}}" alt="{{ cheque_details.bank_name}}" style="width:100; height:100%;"/>
     <img src="/vision{{ cheque_details.ifsc_img.url}}" alt="{{ cheque_details.bank_name}}" />
     <img src="/vision{{ cheque_details.amount_img.url}}" alt="{{ cheque_details.bank_name}}" />
     <img src="/vision{{ cheque_details.micr_img.url}}" alt="{{ cheque_details.bank_name}}" />
     <img src="/vision{{ cheque_details.signature.url}}" alt="{{ cheque_details.bank_name}}"  />  
-  </div>
+    {% endcomment %}
 
   <form action="{%url 'done' %}" id="form" method="post"  enctype="multipart/form-data">
     {% csrf_token %}

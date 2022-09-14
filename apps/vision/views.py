@@ -124,7 +124,7 @@ def upload_cheque3(request):
     else:
 
         return render(request, 'vision/uploadcheque3.html')
-from .ChequeOCR.scripts import OCR
+# from .ChequeOCR.scripts import OCR
 # from chequeocr.ChequeOCR.scripts import OCR
 from pprint import pprint
 def chequeProcessing(request):
@@ -157,8 +157,8 @@ def chequeProcessing(request):
 
         # print(baseDir,"it is")
         print("doneee")
-        cheque_details=OCR.cheque_ocr(image_path)
-        # cheque_details={'PayeeName': 'PadabaD . Pradeep Kumar', 'AC/NO': '1130002010108841', 'IFSC': 'SYNB0003011', 'Amount': '8800000', 'Cheque MICR Number': 'DDD683651DDD 5666 D5633D 29666 2U'}
+        # cheque_details=OCR.cheque_ocr(image_path)
+        cheque_details={'PayeeName': 'PadabaD . Pradeep Kumar', 'AC/NO': '1130002010108841', 'IFSC': 'SYNB0003011', 'Amount': '8800000', 'Cheque MICR Number': 'DDD683651DDD 5666 D5633D 29666 2U'}
 
         pprint(cheque_details)
 
