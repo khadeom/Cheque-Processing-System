@@ -154,12 +154,9 @@ def chequeProcessing(request):
         image_path=str(baseDir) + cheque_url
         print("path of image is",image_path)
 
-        exit()
 
         # print(baseDir,"it is")
-        # exit()
         print("doneee")
-        # exit()
         cheque_details=OCR.cheque_ocr(image_path)
         # cheque_details={'PayeeName': 'PadabaD . Pradeep Kumar', 'AC/NO': '1130002010108841', 'IFSC': 'SYNB0003011', 'Amount': '8800000', 'Cheque MICR Number': 'DDD683651DDD 5666 D5633D 29666 2U'}
 
