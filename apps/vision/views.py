@@ -170,22 +170,22 @@ def chequeProcessing(request):
         chequedetails.amount = cheque_details["Amount"]
         chequedetails.micr = cheque_details["Cheque MICR Number"]
 
-        with open('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/signature.jpg', 'rb') as f:   # use 'rb' mode for python3
+        with open('media/ChequeOCR/feilds/signature.jpg', 'rb') as f:   # use 'rb' mode for python3
             data = File(f)
             chequedetails.signature.save(cheque_id+"signature.jpg", data,True)
 
 
-        with open('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/payee.jpg', 'rb') as f:   # use 'rb' mode for python3
+        with open('media/ChequeOCR/feilds/payee.jpg', 'rb') as f:   # use 'rb' mode for python3
             data = File(f)
             chequedetails.payee_img.save(cheque_id+"payee.jpg", data,True)
-        with open('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/ac_no.jpg', 'rb') as f:   # use 'rb' mode for python3
+        with open('media/ChequeOCR/feilds/ac_no.jpg', 'rb') as f:   # use 'rb' mode for python3
             data = File(f)
             chequedetails.accNo_img.save(cheque_id+"ac_no.jpg", data,True)
-        with open('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/ifsc.jpg', 'rb') as f:   # use 'rb' mode for python3
+        with open('media/ChequeOCR/feilds/ifsc.jpg', 'rb') as f:   # use 'rb' mode for python3
             data = File(f)
             chequedetails.ifsc_img.save(cheque_id+"ifsc.jpg", data,True)
 
-        with open('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/Amount/padded_amount.jpg', 'rb') as f:   # use 'rb' mode for python3
+        with open('media/ChequeOCR/feilds/Amount/padded_amount.jpg', 'rb') as f:   # use 'rb' mode for python3
             data = File(f)
             chequedetails.amount_img.save(cheque_id+"amount.jpg", data,True)
         with open('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/bottom.jpg', 'rb') as f:   # use 'rb' mode for python3
@@ -292,7 +292,7 @@ def chequeProcessingBACKUP(request):
 
 
     
-# /home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/templates/vision/uploadcheque.html
+# media/templates/vision/uploadcheque.html
 
 
 

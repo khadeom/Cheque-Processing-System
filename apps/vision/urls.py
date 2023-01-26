@@ -25,9 +25,9 @@ urlpatterns = [
 
 
 
+]
 
+# ]+static("/media/", document_root="/home/omkhade/chequeOCR/MicrosoftHackthon/media")
 
-]+static("/media/", document_root="/home/omkhade/chequeOCR/MicrosoftHackthon/media")
-
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
