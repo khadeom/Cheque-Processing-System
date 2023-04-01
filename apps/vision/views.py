@@ -188,7 +188,7 @@ def chequeProcessing(request):
         with open('media/ChequeOCR/feilds/Amount/padded_amount.jpg', 'rb') as f:   # use 'rb' mode for python3
             data = File(f)
             chequedetails.amount_img.save(cheque_id+"amount.jpg", data,True)
-        with open('/media/bottom.jpg', 'rb') as f:   # use 'rb' mode for python3
+        with open('media/bottom.jpg', 'rb') as f:   # use 'rb' mode for python3
             data = File(f)
             chequedetails.micr_img.save(cheque_id+"micr.jpg", data,True)
         
