@@ -12,3 +12,4 @@ django-crispy-forms
 crispy_bootstrap5
 Pillow
 Django
+opencv-python

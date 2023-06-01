@@ -124,7 +124,7 @@ def upload_cheque3(request):
     else:
 
         return render(request, 'vision/uploadcheque3.html')
-# from .ChequeOCR.scripts import OCR
+from .ChequeOCR.scripts import OCR
 # from chequeocr.ChequeOCR.scripts import OCR
 from pprint import pprint
 def chequeProcessing(request):
@@ -157,8 +157,8 @@ def chequeProcessing(request):
 
         # print(baseDir,"it is")
         print("doneee")
-        # cheque_details=OCR.cheque_ocr(image_path)
-        cheque_details={'PayeeName': 'PadabaD . Pradeep Kumar', 'AC/NO': '1130002010108841', 'IFSC': 'SYNB0003011', 'Amount': '8800000', 'Cheque MICR Number': 'DDD683651DDD 5666 D5633D 29666 2U'}
+        cheque_details=OCR.cheque_ocr(image_path)
+        # cheque_details={'PayeeName': 'Abhilas Reddy', 'AC/NO': '1130002010108841', 'IFSC': 'SYNB0003011', 'Amount': '2255000', 'Cheque MICR Number': 'DDD683651DDD 5666 D5633D 29666 2U'}
 
         pprint(cheque_details)
 
@@ -188,7 +188,7 @@ def chequeProcessing(request):
         with open('media/ChequeOCR/feilds/Amount/padded_amount.jpg', 'rb') as f:   # use 'rb' mode for python3
             data = File(f)
             chequedetails.amount_img.save(cheque_id+"amount.jpg", data,True)
-        with open('/media/bottom.jpg', 'rb') as f:   # use 'rb' mode for python3
+        with open('media/bottom.jpg', 'rb') as f:   # use 'rb' mode for python3
             data = File(f)
             chequedetails.micr_img.save(cheque_id+"micr.jpg", data,True)
         

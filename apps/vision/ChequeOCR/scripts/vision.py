@@ -1,6 +1,6 @@
 from .imports import *
   
-#os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'D:/Projects/AS_Hackathon_bank_cheque/hackathon-bf39302e7ac7.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'/home/gaurav/FinalProject/apps/vision/ChequeOCR/scripts/fluent-archway-385107-7d396346cbba.json'
 import json
 def vision_api(f,image_context=''):
 
@@ -8,8 +8,9 @@ def vision_api(f,image_context=''):
 	# f = 'amount_img.jpg'
 	with io.open(f, 'rb') as image: 
 	    content = image.read()
-	    
+	print("whats the issue",content)
 	image = vision.Image(content = content)
+	# image = visi
 
 	if image_context == 'bearer':
 		handwritten_image_context = vision.ImageContext(language_hints=['en-t-i0-handwrit'])

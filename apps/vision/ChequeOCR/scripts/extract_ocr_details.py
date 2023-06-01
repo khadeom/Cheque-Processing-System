@@ -12,7 +12,7 @@ def ext_ocr_details(img):
 	f_fill_img = np.copy(img_th)
 	h, w = img_th.shape[:2]
 	f_fill_img_inv = cv2.bitwise_not(f_fill_img)
-	cv2.imwrite('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/dilated.jpg', f_fill_img_inv)
+	cv2.imwrite('media/ChequeOCR/dilated.jpg', f_fill_img_inv)
 	pil_img = Image.fromarray(img)
 	cord_dict = {}
 	re1 = 'ifs'
@@ -69,7 +69,7 @@ def ext_ocr_details(img):
 				# print('matches ->', matches)
 				if filtered_text not in cord_dict.keys():
 					cord_dict[filtered_text] = [(x, y), (x+w, y+h)]
-	cv2.imwrite('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/check_cont_.jpg', cv_img_bkp)
+	cv2.imwrite('media/ChequeOCR/check_cont_.jpg', cv_img_bkp)
 			#word = img[y:y+h, x:x+w]
 			#word = cv2.resize(word, (100, 32))
 			#word = cv2.threshold(word, 0, 255, cv2.THRESH_OTSU)[1]
@@ -90,8 +90,8 @@ def ext_ocr_details(img):
 			y = value[0][1] - 20
 			w = 1000
 			h = 90
-			cv2.imwrite('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/ac_no.jpg', img[y:y+h, x:x+w])
-			ac_no = vision_api('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/ac_no.jpg')
+			cv2.imwrite('media/ChequeOCR/feilds/ac_no.jpg', img[y:y+h, x:x+w])
+			ac_no = vision_api('media/ChequeOCR/feilds/ac_no.jpg')
 			# print('ac_no ->', "".join(ac_no))
 			ac_no = "".join(ac_no)
 
@@ -100,8 +100,8 @@ def ext_ocr_details(img):
 			y = value[0][1] - 20
 			w = 1000
 			h = 90
-			cv2.imwrite('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/ac_no.jpg', img[y:y+h, x:x+w])
-			ac_no = vision_api('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/ac_no.jpg')
+			cv2.imwrite('media/ChequeOCR/feilds/ac_no.jpg', img[y:y+h, x:x+w])
+			ac_no = vision_api('media/ChequeOCR/feilds/ac_no.jpg')
 			# print('ac_no ->', "".join(ac_no))
 			ac_no = "".join(ac_no)
 
@@ -110,8 +110,8 @@ def ext_ocr_details(img):
 			y = value[0][1] - 20
 			w = 1000
 			h = 90
-			cv2.imwrite('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/ac_no.jpg', img[y:y+h, x:x+w])
-			ac_no = vision_api('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/ac_no.jpg')
+			cv2.imwrite('media/ChequeOCR/feilds/ac_no.jpg', img[y:y+h, x:x+w])
+			ac_no = vision_api('media/ChequeOCR/feilds/ac_no.jpg')
 			# print('ac_no ->', "".join(ac_no))
 			ac_no = "".join(ac_no)
 
@@ -122,8 +122,8 @@ def ext_ocr_details(img):
 			h = 30
 			#print('ifsc ->', (x, y, w, h))
 			ifsc_pt = y+h 
-			cv2.imwrite('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/ifsc.jpg', img[y:y+h, x:x+w])
-			ifsc = vision_api('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/ifsc.jpg')
+			cv2.imwrite('media/ChequeOCR/feilds/ifsc.jpg', img[y:y+h, x:x+w])
+			ifsc = vision_api('media/ChequeOCR/feilds/ifsc.jpg')
 			# print('ifsc->', "".join(ifsc))
 			ifsc = "".join(ifsc)
 
@@ -134,8 +134,8 @@ def ext_ocr_details(img):
 			h = 30
 			ifsc_pt = y+h
 			#print('ifsc ->', (x, y, w, h))
-			cv2.imwrite('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/ifsc.jpg', img[y:y+h, x:x+w])
-			ifsc = vision_api('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/ifsc.jpg')
+			cv2.imwrite('media/ChequeOCR/feilds/ifsc.jpg', img[y:y+h, x:x+w])
+			ifsc = vision_api('media/ChequeOCR/feilds/ifsc.jpg')
 			# print('ifsc->', "".join(ifsc))
 			ifsc = "".join(ifsc)
 
@@ -148,14 +148,14 @@ def ext_ocr_details(img):
 			sign = pad_img(sign, sign)[0]
 			# sign = sign.flatten()
 			# sign = Image.fromarray(sign)
-			cv2.imwrite('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/org_signature.jpg', sign)
+			cv2.imwrite('media/ChequeOCR/feilds/org_signature.jpg', sign)
 			sign = cv2.resize(sign, (200, 100))
-			cv2.imwrite('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/signature.jpg', sign)
+			cv2.imwrite('media/ChequeOCR/feilds/signature.jpg', sign)
 
 		if 'bearer' in key.strip().lower():
-			w = value[0][0] - 285
+			w = value[0][0] - 285; print("u heredsd")
 			y = value[0][1] - 40
-			# print('ifsc pt->', ifsc_pt)
+			print('ifsc pt->', ifsc_pt)
 			# print('payee->', y)
 			if y < ifsc_pt:
 				y = ifsc_pt
@@ -166,8 +166,8 @@ def ext_ocr_details(img):
 			bearer = correct_line(bearer)[0]
 			bearer = pad_img(bearer, bearer)[0]
 			bearer = pad_bearer(bearer)
-			cv2.imwrite('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/payee.jpg', bearer)
-			bearer = vision_api('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/payee.jpg','bearer')
+			cv2.imwrite('media/ChequeOCR/feilds/payee.jpg', bearer)
+			bearer = vision_api('media/ChequeOCR/feilds/payee.jpg','bearer')
 			# print('payee name->', " ".join(bearer).strip())
 			bearer = " ".join(bearer)
 
