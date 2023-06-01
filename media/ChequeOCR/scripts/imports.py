@@ -18,9 +18,9 @@ from imutils import contours
 from keras.models import load_model
 #from .ext_ocr_details import *
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/grand-sweep-361419-b243ddbf7782.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'/home/gaurav/FinalProject/media/fluent-archway-385107-7d396346cbba.json'
 #tr.tesseract_cmd = 'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe'
 charNames = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "T", "U", "A", "D"]
 rectKernel = cv2.getStructuringElement(cv2.MORPH_RECT, (17, 7))
-mnist_model = load_model('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/mnist_GC_v1.h5')
+mnist_model = load_model('/home/gaurav/FinalProject/apps/vision/ChequeOCR/mnist_GC_v1.h5')
 

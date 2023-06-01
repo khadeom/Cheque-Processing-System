@@ -13,7 +13,7 @@ import re
 def cheque_ocr(image_path):
 
     # d={'PayeeName': 'PadabaD . Pradeep Kumar', 'AC/NO': '1130002010108841', 'IFSC': 'SYNB0003011', 'Amount': '8800000', 'Cheque MICR Number': 'DDD683651DDD 5666 D5633D 29666 2U'}
-    # d.update({'signature':'/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/signature.jpg'})
+    # d.update({'signature':'/home/gaurav/FinalProject/apps/vision/ChequeOCR/feilds/signature.jpg'})
     # return d
 
     # parser = argparse.ArgumentParser()
@@ -48,7 +48,7 @@ def cheque_ocr(image_path):
     # print(date)
     # print('date->', "".join(date))
 
-    template = cv2.imread('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/rupee_template_2.jpg', 0)                 # rupee symbol template
+    template = cv2.imread('/home/gaurav/FinalProject/apps/vision/ChequeOCR/rupee_template_2.jpg', 0)                 # rupee symbol template
     amount = ext_amount(line_corrected_img, template)
 
     #pay_template = cv2.imread('./Pay.jpg', 0)
@@ -66,7 +66,7 @@ def cheque_ocr(image_path):
 
     cheque_fields.update({'Amount':amount})
     cheque_fields.update({'Cheque MICR Number':extracted_micr})
-    cheque_fields.update({'signature':'/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/signature.jpg'})
+    cheque_fields.update({'signature':'/home/gaurav/FinalProject/apps/vision/ChequeOCR/feilds/signature.jpg'})
     print("cheque Field ",cheque_fields)
 
 
@@ -77,18 +77,18 @@ def cheque_ocr(image_path):
     pprint(details_df)
     print(type(details_df.index))
     # details_df['Signature'] = pd.Series(index=details_df.index,dtype='float64')  
-    details_df['Signature'] =   '/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/signature.jpg' 
+    details_df['Signature'] =   '/home/gaurav/FinalProject/apps/vision/ChequeOCR/feilds/signature.jpg' 
 
 
     # print(details_df.head())
 
-    writer = pd.ExcelWriter('/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/Cheque_details.xlsx', engine='xlsxwriter')
+    writer = pd.ExcelWriter('/home/gaurav/FinalProject/apps/vision/ChequeOCR/Cheque_details.xlsx', engine='xlsxwriter')
     details_df.to_excel(writer, sheet_name='Sheet1')
     workbook  = writer.book
     worksheet = writer.sheets['Sheet1']
 
     # Insert an image.
-    worksheet.insert_image('G2', '/home/omkhade/chequeOCR/Bank-Cheque-OCR/ChequeProcessing/vision/ChequeOCR/feilds/signature.jpg')
+    worksheet.insert_image('G2', '/home/gaurav/FinalProject/apps/vision/ChequeOCR/feilds/signature.jpg')
 
     # Close the Pandas Excel writer and output the Excel file.
     writer.save()
